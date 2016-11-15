@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoramento_de_bicicletas">Monitoramento de Bicicletas</string>
+    <string name="email">email</string>
+    <string name="senha">senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="criar_uma_nova_conta">Criar uma nova conta</string>
+    <string name="nome">nome</string>
+    <string name="confirmar_senha">confirmar senha</string>
+    <string name="cadastrar">CADASTRAR</string>
+    <string name="identificador_da_bicicleta">Identificador da bicicleta</string>
+    <string name="cadastrar_">Cadastrar</string>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.smb.activity.LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/monitoramento_de_bicicletas"
+        android:textSize="24sp"
+        android:id="@+id/textView"
+        android:layout_below="@+id/imageBikeBlue"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bike_blue"
+        android:id="@+id/imageBikeBlue"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="15"
+        android:id="@+id/email"
+        android:hint="@string/email"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="15"
+        android:id="@+id/senha"
+        android:hint="@string/senha"
+        android:layout_below="@+id/email"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/entrar"
+        android:id="@+id/entrar"
+        android:layout_below="@+id/senha"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/color_border"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/esqueci_minha_senha"
+        android:id="@+id/esqueceuSenha"
+        android:layout_below="@+id/entrar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:onClick="carregarTelaEsqueciSenha"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/criar_uma_nova_conta"
+        android:id="@+id/criarConta"
+        android:layout_below="@+id/esqueceuSenha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textSize="16sp"
+        android:onClick="carregarTelaCadastrar"/>
+</RelativeLayout>
