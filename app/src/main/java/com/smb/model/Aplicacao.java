@@ -10,7 +10,8 @@ public class Aplicacao extends Application{
     private Pessoa pessoa;
     private Bicicleta bicicleta;
     private Localizacao localizacao;
-    private String servidor = "http://192.168.1.18:3000";
+    //192.168.1.18
+    private String servidor = "http://200.129.38.16:3000";
     private String caminho = "/pessoa/cadastrar";
 
     @Override

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
             MainActivity.AsyncTaskBicicleta asyncTaskBicicleta = new MainActivity.AsyncTaskBicicleta();
             asyncTaskBicicleta.execute(aplicacao.getPessoa().getBicicleta());
+
+            Button bt = (Button) findViewById(R.id.btMap);
+
+            bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    carregarTelaMap();
+                }
+            });
         }
     }
 
@@ -116,6 +128,12 @@ public class MainActivity extends AppCompatActivity {
     public void carregarTelaCadastrarBike(){
         Intent intent;
         intent = new Intent(this, BicicletaActivity.class);
+        startActivity(intent);
+    }
+
+    public void carregarTelaMap(){
+        Intent intent;
+        intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 }

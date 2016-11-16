@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.smb.model.Aplicacao;
 import com.smb.model.Localizacao;
-import com.smb.model.Pessoa;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -19,12 +18,17 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Cayk Lima on 15/11/16.
  */
 
 public class LocalizacaoService extends Service{
+
+    LocalBroadcastManager broadcastManager;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -34,15 +38,14 @@ public class LocalizacaoService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        broadcastManager = LocalBroadcastManager.getInstance(this);
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Aplicacao aplicacao = (Aplicacao) getApplication();
-                while(true){
+    TimerTask timerLocalizacao = new TimerTask() {
+        @Override
+        public void run() {
+
+                    Aplicacao aplicacao = (Aplicacao) getApplication();
 
                     OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -57,7 +60,6 @@ public class LocalizacaoService extends Service{
                     try {
                         Response response = okHttpClient.newCall(request).execute();
                         String resultado = response.body().string();
-                        Log.i("Script", resultado);
 
                         GsonBuilder builder = new GsonBuilder();
                         Gson gson = builder.create();
@@ -65,23 +67,23 @@ public class LocalizacaoService extends Service{
 
                         String lat = String.valueOf(localizacao.getLatitude());
                         String lon = String.valueOf(localizacao.getLongitude());
-
-                        Log.i("Latitude", lat);
-                        Log.i("Longitude", lon);
-
+                        Log.i("Script", localizacao.getBicicleta());
+                        Log.i("Lat", lat);
+                        Log.i("Lon", lon);
                         aplicacao.setLocalizacao(localizacao);
+
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+        }
+    };
 
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Timer t = new Timer();
+        t.schedule(timerLocalizacao, 1000L, 5000L);
+
         return Service.START_STICKY;
     }
 }

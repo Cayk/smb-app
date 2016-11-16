@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            Log.i("Resultado", resultado);
             return resultado;
         }
 
