@@ -17,6 +17,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,37 +47,45 @@ public class LocalizacaoService extends Service{
         @Override
         public void run() {
 
-                    Aplicacao aplicacao = (Aplicacao) getApplication();
+            Aplicacao aplicacao = (Aplicacao) getApplication();
 
-                    OkHttpClient okHttpClient = new OkHttpClient();
+            OkHttpClient okHttpClient = new OkHttpClient();
 
-                    RequestBody requestBody = new FormEncodingBuilder()
-                            .add("identificador", aplicacao.getBicicleta().getIdentificador())
-                            .build();
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("identificador", aplicacao.getBicicleta().getIdentificador())
+                    .build();
 
-                    Request request = new Request.Builder()
-                            .url(aplicacao.getServidor() + "/localizacao/bike")
-                            .post(requestBody)
-                            .build();
-                    try {
-                        Response response = okHttpClient.newCall(request).execute();
-                        String resultado = response.body().string();
+            Request request = new Request.Builder()
+                    .url(aplicacao.getServidor() + "/localizacao/bike")
+                    .post(requestBody)
+                    .build();
 
-                        GsonBuilder builder = new GsonBuilder();
-                        Gson gson = builder.create();
-                        Localizacao localizacao = gson.fromJson(resultado, Localizacao.class);
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                String resultado = response.body().string();
 
-                        String lat = String.valueOf(localizacao.getLatitude());
-                        String lon = String.valueOf(localizacao.getLongitude());
-                        Log.i("Script", localizacao.getBicicleta());
-                        Log.i("Lat", lat);
-                        Log.i("Lon", lon);
-                        aplicacao.setLocalizacao(localizacao);
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+                Localizacao localizacao = gson.fromJson(resultado, Localizacao.class);
 
+                aplicacao.setLocalizacao(localizacao);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                Log.i("Flag", aplicacao.isFlagViagem()+"");
+                if(aplicacao.isFlagViagem() == true){
+                    if(aplicacao.getViagem().getNome() == null){
+                        int qtd = aplicacao.getBicicleta().getlistaViagens().size();
+                        aplicacao.getViagem().setNome("Viagem "+ qtd++);
+                        Log.i("Nome Viagem", aplicacao.getViagem().getNome());
                     }
+                    aplicacao.getViagem().getListaLoc().add(localizacao);
+                    Log.i("Qtd Loc", aplicacao.getViagem().getListaLoc().size()+"");
+                }
+
+                EventBus.getDefault().post(new Object());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     };
 

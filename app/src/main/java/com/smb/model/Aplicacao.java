@@ -10,9 +10,9 @@ public class Aplicacao extends Application{
     private Pessoa pessoa;
     private Bicicleta bicicleta;
     private Localizacao localizacao;
-    //192.168.1.18
-    private String servidor = "http://200.129.38.16:3000";
-    private String caminho = "/pessoa/cadastrar";
+    private Viagem viagem;
+    private boolean flagViagem = false;
+    private String servidor = "http://192.168.1.14:3000";
 
     @Override
     public void onCreate() {
@@ -29,6 +29,8 @@ public class Aplicacao extends Application{
 
     public Bicicleta getBicicleta() { return bicicleta; }
 
+    public void setBicicleta(Bicicleta bicicleta) { this.bicicleta = bicicleta; }
+
     public Localizacao getLocalizacao() {
         return localizacao;
     }
@@ -36,8 +38,6 @@ public class Aplicacao extends Application{
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
     }
-
-    public void setBicicleta(Bicicleta bicicleta) { this.bicicleta = bicicleta; }
 
     public String getServidor() {
         return servidor;
@@ -47,11 +47,22 @@ public class Aplicacao extends Application{
         this.servidor = servidor;
     }
 
-    public String getCaminho() {
-        return caminho;
+    public Viagem getViagem() {
+        if(viagem == null){
+            viagem = new Viagem();
+        }
+        return viagem;
     }
 
-    public void setCaminho(String caminho) {
-        this.caminho = caminho;
+    public void setViagem(Viagem viagem) {
+        this.viagem = viagem;
+    }
+
+    public boolean isFlagViagem() {
+        return flagViagem;
+    }
+
+    public void setFlagViagem(boolean flagViagem) {
+        this.flagViagem = flagViagem;
     }
 }

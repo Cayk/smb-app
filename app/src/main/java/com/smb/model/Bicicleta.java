@@ -1,5 +1,6 @@
 package com.smb.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +35,9 @@ public class Bicicleta {
     }
 
     public List<Viagem> getlistaViagens() {
+        if(listaViagens == null){
+            listaViagens = new ArrayList<Viagem>();
+        }
         return listaViagens;
     }
 

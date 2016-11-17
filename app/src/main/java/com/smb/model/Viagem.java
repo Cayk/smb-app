@@ -1,5 +1,6 @@
 package com.smb.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,10 @@ public class Viagem {
     private String _id;
     private String nome;
     private List<Localizacao> listaLoc;
+
+    public Viagem() {
+
+    }
 
     public Viagem(String _id, String nome, List<Localizacao> listaLoc) {
         this._id = _id;
@@ -33,6 +38,9 @@ public class Viagem {
     }
 
     public List<Localizacao> getListaLoc() {
+        if(listaLoc == null){
+            listaLoc = new ArrayList<Localizacao>();
+        }
         return listaLoc;
     }
 

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     public void carregarTelaCadastrarBike(){
         Intent intent;
         intent = new Intent(this, BicicletaActivity.class);
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void carregarTelaMap(){
         Intent intent;
-        intent = new Intent(this, MapsActivity.class);
+        intent = new Intent(this, LocalizacaoActivity.class);
         startActivity(intent);
     }
 }
