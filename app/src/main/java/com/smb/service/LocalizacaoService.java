@@ -29,8 +29,6 @@ import java.util.TimerTask;
 
 public class LocalizacaoService extends Service{
 
-    LocalBroadcastManager broadcastManager;
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,7 +38,6 @@ public class LocalizacaoService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
-        broadcastManager = LocalBroadcastManager.getInstance(this);
     }
 
     TimerTask timerLocalizacao = new TimerTask() {
@@ -78,7 +75,6 @@ public class LocalizacaoService extends Service{
                         Log.i("Nome Viagem", aplicacao.getViagem().getNome());
                     }
                     aplicacao.getViagem().getListaLoc().add(localizacao);
-                    Log.i("Qtd Loc", aplicacao.getViagem().getListaLoc().size()+"");
                 }
 
                 EventBus.getDefault().post(new Object());
@@ -92,7 +88,7 @@ public class LocalizacaoService extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Timer t = new Timer();
-        t.schedule(timerLocalizacao, 1000L, 5000L);
+        t.schedule(timerLocalizacao, 1000L, 30000L);
 
         return Service.START_STICKY;
     }

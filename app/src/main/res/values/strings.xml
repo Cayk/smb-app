@@ -12,4 +12,5 @@
     <string name="identificador_da_bicicleta">Identificador da bicicleta</string>
     <string name="cadastrar_">Cadastrar</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_viagem">Viagem</string>
 </resources>

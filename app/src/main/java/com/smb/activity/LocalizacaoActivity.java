@@ -1,6 +1,5 @@
 package com.smb.activity;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -16,14 +15,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.smb.R;
 import com.smb.model.Aplicacao;
-import com.smb.model.Bicicleta;
-import com.smb.model.OnItemClickListener;
-import com.smb.model.Viagem;
-import com.smb.model.ViagensRecyclerViewAdapter;
-import com.smb.service.LocalizacaoService;
+
+import com.smb.model.Localizacao;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -113,6 +109,10 @@ public class LocalizacaoActivity extends FragmentActivity implements OnMapReadyC
 
             aplicacao = (Aplicacao) getApplication();
             String resultado = null;
+
+            for(Localizacao localizacao : aplicacao.getViagem().getListaLoc()){
+               localizacao.set_id(null);
+            }
 
             Gson g = new Gson();
             String js = g.toJson(aplicacao.getViagem());

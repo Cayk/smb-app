@@ -1,7 +1,6 @@
 package com.smb.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Cayk Lima on 12/11/16.
@@ -9,13 +8,13 @@ import java.util.List;
 public class Viagem {
     private String _id;
     private String nome;
-    private List<Localizacao> listaLoc;
+    private ArrayList<Localizacao> listaLoc;
 
     public Viagem() {
 
     }
 
-    public Viagem(String _id, String nome, List<Localizacao> listaLoc) {
+    public Viagem(String _id, String nome, ArrayList<Localizacao> listaLoc) {
         this._id = _id;
         this.nome = nome;
         this.listaLoc = listaLoc;
@@ -37,14 +36,14 @@ public class Viagem {
         this.nome = nome;
     }
 
-    public List<Localizacao> getListaLoc() {
+    public ArrayList<Localizacao> getListaLoc() {
         if(listaLoc == null){
             listaLoc = new ArrayList<Localizacao>();
         }
         return listaLoc;
     }
 
-    public void setListaLoc(List<Localizacao> listaLoc) {
+    public void setListaLoc(ArrayList<Localizacao> listaLoc) {
         this.listaLoc = listaLoc;
     }
 }

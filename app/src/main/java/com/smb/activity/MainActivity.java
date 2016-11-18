@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,13 +14,16 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import com.smb.R;
 import com.smb.model.Aplicacao;
 import com.smb.model.Bicicleta;
-import com.smb.model.OnItemClickListener;
+import com.smb.listener.OnItemClickListener;
+import com.smb.model.Localizacao;
 import com.smb.model.Viagem;
-import com.smb.model.ViagensRecyclerViewAdapter;
+import com.smb.adapter.ViagensRecyclerViewAdapter;
 import com.smb.service.LocalizacaoService;
+
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -27,6 +31,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txNome;
     Aplicacao aplicacao;
     private List<Viagem> viagens;
+
     private RecyclerView mRecyclerView;
     private ViagensRecyclerViewAdapter adapter;
 
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                     carregarTelaMap();
+                    finish();
                 }
             });
         }
@@ -117,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(Viagem viagem) {
                             Toast.makeText(MainActivity.this, viagem.getNome(),Toast.LENGTH_LONG).show();
+                            carregarTelaViagemNoMapa(viagem.getListaLoc());
                         }
                     });
                 }
@@ -136,6 +144,12 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(this, LocalizacaoActivity.class);
         startActivity(intent);
     }
+
+    public void carregarTelaViagemNoMapa(ArrayList<Localizacao> localizacoes){
+        Log.i("Localizacoes", localizacoes.get(0).getBicicleta()+"");
+        Intent intent;
+        intent = new Intent(this, ViagemActivity.class);
+        intent.putExtra("localizacoes", localizacoes);
+        startActivity(intent);
+    }
 }
-
-

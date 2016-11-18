@@ -1,4 +1,4 @@
-package com.smb.model;
+package com.smb.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.smb.R;
+import com.smb.listener.OnItemClickListener;
+import com.smb.model.Viagem;
 
 import java.util.List;
 

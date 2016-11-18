@@ -48,10 +48,13 @@
 
         <activity
             android:name=".activity.LocalizacaoActivity"
-            android:label="@string/title_activity_maps">
-        </activity>
+            android:label="@string/title_activity_maps"/>
 
         <service android:name=".service.LocalizacaoService" />
+
+        <activity
+            android:name=".activity.ViagemActivity"
+            android:label="@string/title_activity_viagem" />
     </application>
 
 </manifest>
