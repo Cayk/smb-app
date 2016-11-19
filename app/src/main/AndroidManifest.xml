@@ -32,8 +32,10 @@
             android:name=".activity.CadastrarActivity"
             android:label="Cadastrar"
             android:parentActivityName=".activity.LoginActivity" />
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.BicicletaActivity" />
+        <activity android:name=".activity.MainActivity"
+                  android:label="Home" />
+        <activity android:name=".activity.BicicletaActivity"
+                  android:label="Cadastrar Bicicleta"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -48,13 +50,16 @@
 
         <activity
             android:name=".activity.LocalizacaoActivity"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps" />
 
         <service android:name=".service.LocalizacaoService" />
 
         <activity
             android:name=".activity.ViagemActivity"
             android:label="@string/title_activity_viagem" />
+
+        <activity android:name=".activity.EditarPerfilActivity"
+                  android:label="Editar Perfil"/>
     </application>
 
 </manifest>

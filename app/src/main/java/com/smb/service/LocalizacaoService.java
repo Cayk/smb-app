@@ -38,6 +38,8 @@ public class LocalizacaoService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        Timer t = new Timer();
+        t.schedule(timerLocalizacao, 1000L, 30000L);
     }
 
     TimerTask timerLocalizacao = new TimerTask() {
@@ -87,9 +89,7 @@ public class LocalizacaoService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Timer t = new Timer();
-        t.schedule(timerLocalizacao, 1000L, 30000L);
 
-        return Service.START_STICKY;
+        return Service.START_NOT_STICKY;
     }
 }

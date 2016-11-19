@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txNome = (TextView) findViewById(R.id.textNome);
         aplicacao = (Aplicacao) getApplication();
 
         if(aplicacao.getPessoa().getBicicleta() == null){
@@ -60,16 +61,6 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.AsyncTaskBicicleta asyncTaskBicicleta = new MainActivity.AsyncTaskBicicleta();
             asyncTaskBicicleta.execute(aplicacao.getPessoa().getBicicleta());
 
-            Button bt = (Button) findViewById(R.id.btMap);
-
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    carregarTelaMap();
-                    finish();
-                }
-            });
         }
     }
 
@@ -117,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 startService(intent);
 
                 if(bicicleta.getlistaViagens().size() > 0){
+                    txNome.setText("Bem vindo "+aplicacao.getPessoa().getNome()+".");
                     viagens = bicicleta.getlistaViagens();
                     adapter = new ViagensRecyclerViewAdapter(MainActivity.this, viagens);
                     mRecyclerView.setAdapter(adapter);
@@ -127,9 +119,36 @@ public class MainActivity extends AppCompatActivity {
                             carregarTelaViagemNoMapa(viagem.getListaLoc());
                         }
                     });
+                }else{
+                    txNome.setText("Bem vindo "+aplicacao.getPessoa().getNome()+". Você não possui viagens cadastradas. Inicie uma agora mesmo!");
                 }
-                Toast.makeText(MainActivity.this, "Ok!", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.editar_perfil:
+                Intent intent1 = new Intent(getApplicationContext(), EditarPerfilActivity.class);
+                startActivity(intent1);
+                finish();
+                return true;
+            case R.id.localizacao_mapa:
+                Intent intent2 = new Intent(getApplicationContext(), LocalizacaoActivity.class);
+                startActivity(intent2);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

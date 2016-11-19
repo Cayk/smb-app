@@ -11,6 +11,9 @@ public class Pessoa {
     private String senha;
     private String bicicleta;
 
+    public  Pessoa(){
+
+    }
     public Pessoa(String _id, String nome, String email, String senha, String bicicleta) {
         this._id = _id;
         this.nome = nome;

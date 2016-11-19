@@ -13,4 +13,5 @@
     <string name="cadastrar_">Cadastrar</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_viagem">Viagem</string>
+    <string name="editar">Editar</string>
 </resources>
