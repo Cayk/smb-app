@@ -12,7 +12,7 @@ public class Aplicacao extends Application{
     private Localizacao localizacao;
     private Viagem viagem;
     private boolean flagViagem = false;
-    private String servidor = "http://192.168.1.14:3000";
+    private String servidor = "http://35.161.237.63:3000";
 
     @Override
     public void onCreate() {

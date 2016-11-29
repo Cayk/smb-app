@@ -64,20 +64,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/esqueci_minha_senha"
-        android:id="@+id/esqueceuSenha"
-        android:layout_below="@+id/entrar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:onClick="carregarTelaEsqueciSenha"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/criar_uma_nova_conta"
         android:id="@+id/criarConta"
-        android:layout_below="@+id/esqueceuSenha"
+        android:layout_below="@+id/entrar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:textSize="16sp"

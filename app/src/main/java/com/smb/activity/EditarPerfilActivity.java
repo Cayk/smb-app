@@ -161,4 +161,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EditarPerfilActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

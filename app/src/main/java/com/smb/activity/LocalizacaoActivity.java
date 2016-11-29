@@ -1,5 +1,6 @@
 package com.smb.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -86,17 +87,16 @@ public class LocalizacaoActivity extends FragmentActivity implements OnMapReadyC
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Object object) {
-        Log.i("Entrou", "entrou");
         aplicacao = (Aplicacao) getApplication();
 
         if(mMap != null){
-            LatLng latLng = new LatLng(aplicacao.getLocalizacao().getLatitude(),aplicacao.getLocalizacao().getLongitude());
+            LatLng latLng = new LatLng(aplicacao.getLocalizacao().getLongitude(), aplicacao.getLocalizacao().getLatitude());
 
             mMap.clear();
             MarkerOptions marker = new MarkerOptions();
             marker.position(latLng);
             mMap.addMarker(marker).setTitle("Localização atual");
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         }
     }
 
@@ -148,5 +148,12 @@ public class LocalizacaoActivity extends FragmentActivity implements OnMapReadyC
                 Toast.makeText(LocalizacaoActivity.this, "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LocalizacaoActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

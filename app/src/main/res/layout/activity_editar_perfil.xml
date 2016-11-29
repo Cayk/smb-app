@@ -39,29 +39,32 @@
         android:id="@+id/edit_email"
         android:layout_below="@+id/edit_nome"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:hint="@string/senha"
         android:ems="10"
         android:id="@+id/edit_senha"
         android:layout_below="@+id/edit_email"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:hint="@string/confirmar_senha"
         android:ems="10"
         android:id="@+id/edit_confirmarSenha"
         android:layout_below="@+id/edit_senha"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"/>
 
     <Button
         android:layout_width="wrap_content"

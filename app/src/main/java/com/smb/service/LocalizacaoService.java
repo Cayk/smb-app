@@ -29,6 +29,8 @@ import java.util.TimerTask;
 
 public class LocalizacaoService extends Service{
 
+    Localizacao lastLocalizacao = null;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -39,7 +41,7 @@ public class LocalizacaoService extends Service{
     public void onCreate() {
         super.onCreate();
         Timer t = new Timer();
-        t.schedule(timerLocalizacao, 1000L, 30000L);
+        t.schedule(timerLocalizacao, 1000L, 1000L);
     }
 
     TimerTask timerLocalizacao = new TimerTask() {
@@ -74,11 +76,18 @@ public class LocalizacaoService extends Service{
                     if(aplicacao.getViagem().getNome() == null){
                         int qtd = aplicacao.getBicicleta().getlistaViagens().size();
                         aplicacao.getViagem().setNome("Viagem "+ qtd++);
-                        Log.i("Nome Viagem", aplicacao.getViagem().getNome());
+                        aplicacao.getViagem().getListaLoc().add(localizacao);
                     }
-                    aplicacao.getViagem().getListaLoc().add(localizacao);
+
+                    lastLocalizacao = aplicacao.getViagem().getListaLoc().get(aplicacao.getViagem().getListaLoc().size() -1);
+
+                    if(lastLocalizacao.getLongitude() != localizacao.getLongitude() || lastLocalizacao.getLatitude() != localizacao.getLatitude()) {
+                        aplicacao.getViagem().getListaLoc().add(localizacao);
+                    }
                 }
 
+                Log.i("Lat", aplicacao.getLocalizacao().getLatitude()+"");
+                Log.i("Lon", aplicacao.getLocalizacao().getLongitude()+"");
                 EventBus.getDefault().post(new Object());
 
             } catch (IOException e) {

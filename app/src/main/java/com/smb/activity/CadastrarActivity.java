@@ -73,7 +73,7 @@ public class CadastrarActivity extends AppCompatActivity {
         protected String doInBackground(String... dados) {
 
             OkHttpClient okHttpClient = new OkHttpClient();
-
+            String resultado = null;
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("nome", dados[0])
                     .add("email", dados[1])
@@ -88,18 +88,22 @@ public class CadastrarActivity extends AppCompatActivity {
             try {
                 Response response = okHttpClient.newCall(request).execute();
 
-                final String resultado = response.body().string();
+                resultado = response.body().string();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return "ok";
+            Log.i("Resultado", resultado);
+            return resultado;
         }
 
         @Override
         protected void onPostExecute(String result){
-            if(result.equals("ok")){
+            if(result != null && result.equals("ok")){
                 Toast.makeText(CadastrarActivity.this, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Toast.makeText(CadastrarActivity.this, "Email já cadastrado", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

@@ -1,5 +1,6 @@
 package com.smb.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.smb.R;
 import com.smb.model.Localizacao;
+import com.smb.model.Viagem;
 
 import java.util.ArrayList;
 
@@ -40,11 +42,18 @@ public class ViagemActivity extends FragmentActivity implements OnMapReadyCallba
             Log.i("Loc", localizacoes.size()+"");
             if(localizacoes != null){
                 for(Localizacao localizacao : localizacoes) {
-                    LatLng ponto = new LatLng(localizacao.getLatitude(), localizacao.getLongitude());
+                    LatLng ponto = new LatLng(localizacao.getLongitude(), localizacao.getLatitude());
                     mMap.addMarker(new MarkerOptions().position(ponto));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(ponto));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ponto, 15));
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ViagemActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
