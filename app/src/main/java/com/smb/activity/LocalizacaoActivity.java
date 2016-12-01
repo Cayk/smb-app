@@ -90,7 +90,8 @@ public class LocalizacaoActivity extends FragmentActivity implements OnMapReadyC
         aplicacao = (Aplicacao) getApplication();
 
         if(mMap != null){
-            LatLng latLng = new LatLng(aplicacao.getLocalizacao().getLongitude(), aplicacao.getLocalizacao().getLatitude());
+            //LatLng latLng = new LatLng(aplicacao.getLocalizacao().getLongitude(), aplicacao.getLocalizacao().getLatitude());
+            LatLng latLng = new LatLng(aplicacao.getLocalizacao().getLatitude(), aplicacao.getLocalizacao().getLongitude());
 
             mMap.clear();
             MarkerOptions marker = new MarkerOptions();

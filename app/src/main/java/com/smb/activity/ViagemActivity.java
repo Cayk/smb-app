@@ -42,7 +42,8 @@ public class ViagemActivity extends FragmentActivity implements OnMapReadyCallba
             Log.i("Loc", localizacoes.size()+"");
             if(localizacoes != null){
                 for(Localizacao localizacao : localizacoes) {
-                    LatLng ponto = new LatLng(localizacao.getLongitude(), localizacao.getLatitude());
+                    //LatLng ponto = new LatLng(localizacao.getLongitude(), localizacao.getLatitude());
+                    LatLng ponto = new LatLng(localizacao.getLatitude(), localizacao.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(ponto));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ponto, 15));
                 }

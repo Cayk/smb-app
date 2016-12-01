@@ -41,7 +41,7 @@ public class LocalizacaoService extends Service{
     public void onCreate() {
         super.onCreate();
         Timer t = new Timer();
-        t.schedule(timerLocalizacao, 1000L, 1000L);
+        t.schedule(timerLocalizacao, 1000L, 30000L);
     }
 
     TimerTask timerLocalizacao = new TimerTask() {
